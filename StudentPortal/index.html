@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Portal</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body ng-app="studentApp">
+
+    <header>
+        <h1>Student Portal</h1>
+        <p>Your Gateway to Learning</p>
+    </header>
+
+    <nav>
+        <a href="#!/">Home</a>
+        <a href="#!/about">About</a>
+        <a href="#!/courses">Courses</a>
+        <a href="#!/contact">Contact</a>
+    </nav>
+
+    <main ng-view></main>
+
+    <footer>
+        <p>&copy; 2026 Student Portal. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        var app = angular.module("studentApp", ["ngRoute"]);
+
+        app.config(function($routeProvider) {
+            $routeProvider
+            .when("/", {
+                templateUrl: "home.html"
+            })
+            .when("/about", {
+                templateUrl: "about.html"
+            })
+            .when("/courses", {
+                templateUrl: "courses.html"
+            })
+            .when("/contact", {
+                templateUrl: "contact.html"
+            })
+            .otherwise({
+                redirectTo: "/"
+            });
+        });
+
+        app.controller("contactController", function($scope) {
+            $scope.submitForm = function() {
+                $scope.response = "Thank you! Your enquiry has been submitted.";
+            };
+        });
+    </script>
+
+</body>
+</html>
